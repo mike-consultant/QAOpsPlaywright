@@ -9,7 +9,8 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-    - uses: azure/login@v3
+    - name: Azure Login  
+      uses: azure/login@v3
       with: 
         creds: ${{secrets.AZURE_CREDENTIALS}}
     - uses: actions/checkout@v2
