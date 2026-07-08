@@ -12,7 +12,7 @@ jobs:
     - name: Azure Login  
       uses: azure/login@v3
       with: 
-        creds: ${{secrets.AZURE_CREDENTIALS}}
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
@@ -42,6 +42,8 @@ jobs:
     - name: Install Playwright
       run: npx playwright install --with-deps
     - name: Run Playwright tests
+      env: 
+        PLAYWRIGHT_SERVICE_URL: ${{ vars.PLAYWRIGHT_SERVICE_URL }}
       run: npx playwright test --config=playwright.service.config.js --workers=4    
     - uses: actions/upload-artifact@v2
       if: always()
